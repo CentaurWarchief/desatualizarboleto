@@ -52,7 +52,7 @@ func main() {
 				log.Println(err)
 			}
 
-			if res.StatusCode == http.StatusOK {
+			if res.StatusCode != http.StatusOK {
 				notify(*po, res.Status, &last)
 			}
 
