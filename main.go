@@ -10,12 +10,9 @@ import (
 	"github.com/thorduri/pushover"
 )
 
-const (
-	NotifyFrequency = 60
-)
-
 func notify(po pushover.Pushover, status string, last *time.Time) {
-	if time.Since(*last).Minutes() < NotifyFrequency {
+	// notify every 60 minutes since last notification
+	if time.Since(*last).Minutes() < 60 {
 		return
 	}
 
@@ -46,7 +43,7 @@ func main() {
 
 	go func() {
 		// 1440 (24 * 60)
-		for _ = range time.Tick(5 * time.Second) {
+		for _ = range time.Tick(5 * time.Minute) {
 			var last time.Time
 
 			res, err := http.Get("http://www.atualizarboleto.com.br/")
