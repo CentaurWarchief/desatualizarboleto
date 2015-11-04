@@ -43,7 +43,7 @@ func main() {
 
 	go func() {
 		// 1440 (24 * 60)
-		for _ = range time.Tick(5 * time.Minute) {
+		for _ = range time.Tick(1 * time.Minute) {
 			var last time.Time
 
 			res, err := http.Get("http://www.atualizarboleto.com.br/")
